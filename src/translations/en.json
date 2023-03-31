@@ -1,0 +1,86 @@
+{
+  "landing_auth": "Auth Flow",
+  "landing_bracket": "Bracket Flow",
+
+  "login_email": "Email",
+  "login_password": "Password",
+  "login_button": "Login",
+  "login_forgot_password": "Forgot Password?",
+
+  "register_email": "Email",
+  "register_display_name": "Display Name",
+  "register_password": "Password",
+  "register_confirm_password": "Confirm Password",
+  "register_button": "Register",
+  "register_login": "Login",
+
+  "forgot_password_code": "Code",
+  "forgot_password_code_message": "We have sent you a reset code, enter the code to continue",
+  "forgot_password_submit_button": "Submit",
+  "forgot_password_resend_button": "Resend Code",
+
+  "reset_password_title": "Reset Password",
+  "reset_password_new_password": "Enter your new password",
+  "reset_password_confirm_new_password": "Confirm new password",
+  "reset_password_button": "Confirm",
+
+  "home_title": "Home",
+  "home_hot_brackets": "Hot Brackets",
+  "home_active_brackets": "Active Brackets",
+  "home_recent_brackets": "Recent Brackets",
+  "home_add_bracket": "Add Bracket",
+  "home_new": "New",
+  "home_select_from_draft": "Select from one of your saved drafts or start fresh",
+  "home_new_bracket": "New Bracket",
+
+  "profile_title": "Profile",
+  "profile_display_name": "Display Name",
+  "profile_notification_preferences": "Notification Preferences",
+  "profile_privacy_policy": "Privacy Policy",
+  "profile_terms_of_use": "Terms of Use",
+  "profile_logout": "Logout",
+
+  "create_bracket_title": "Create Bracket",
+  "create_bracket_name": "Name",
+  "create_bracket_description": "Description",
+  "create_bracket_category": "Category",
+  "create_bracket_teams": "Teams",
+  "create_bracket_add_team_button": "Add",
+  "create_bracket_edit_team_button": "Edit",
+  "create_bracket_submit_button": "Submit",
+  "create_bracket_save_draft_button": "Save as draft",
+  "create_bracket_all_button": "All",
+
+  "bracket_teams_add_button": "Add Team",
+
+  "add_team_cancel": "Cancel",
+  "add_team_add": "Add",
+  
+  "edit_team_title": "Edit Team",
+  "edit_team_save": "Save",
+
+  "team_image": "Image",
+  "team_name": "Name",
+  "team_seed": "Seed ",
+  "team_description": "Description",
+  "team_history": "History",
+  "team_edit": "Edit",
+
+  "team_view_all_button": "All",
+
+  "matchup_vote_button": "Vote",
+  "matchup_chat_text": "Chat",
+  "matchup_all_button": "All",
+  "matchup_finalize_button": "Finalize",
+
+  "chat_loading": "Loading",
+  "chat_no_messages": "No Messages Yet",
+  "chat_write_message": "Write a message",
+
+  "finals_tab": "Finals",
+  "semifinals_tab": "Semifinals",
+  "quarterfinals_tab": "Quarterfinals",
+  "round_of_16_tab": "Round of 16",
+  "round_of_32_tab": "Round of 32",
+  "round_of_64_tab": "Round of 64"
+}
