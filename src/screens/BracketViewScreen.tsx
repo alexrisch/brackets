@@ -75,7 +75,7 @@ const WIDTH = 88;
 export const BracketViewScreen: React.FC = () => {
   const { colors } = useTheme();
   const { primary } = colors;
-  const { params } = useScreenRoute();
+  const { params } = useScreenRoute<ScreenNames.BracketViewScreen>();
   const { bracketId } = params ?? {};
   const { goBack, navigate } = useAppNav();
   const { data: bracketInfo, isLoading } = useQuery<Bracket>(

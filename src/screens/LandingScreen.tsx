@@ -1,22 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
+import { Auth } from 'aws-amplify';
 import { ScreenNames } from '../AppNavigator';
 import { ScreenWrapper } from '../components/ScreenWrapper';
 import { useAppNav } from '../navigation';
-import { translate } from '../translations';
 
 export const LandingScreen = () => {
-  const {navigate} = useAppNav();
+  const {reset} = useAppNav();
+
+  useEffect(() => {
+    Auth.currentUserInfo()
+    .then(user => {
+      console.log('here1119', user)
+      if (user) {
+        reset({
+          routes: [
+            {
+              name: ScreenNames.HomeScreen
+            }
+          ]
+        });
+      } else {
+        reset({
+          routes: [
+            {
+              name: ScreenNames.LoginScreen
+            }
+          ]
+        });
+      }
+    })
+    .catch(err => {
+      reset({
+        routes: [
+          {
+            name: ScreenNames.LoginScreen
+          }
+        ]
+      });
+    });
+  }, []);
+
   return (
     <ScreenWrapper>
       <View style={styles.container}>
-        <Button style={styles.button} mode='contained' onPress={() => navigate(ScreenNames.HomeScreen)}>
-        { translate('landing_bracket')}
-        </Button>
-        <Button mode='outlined' onPress={() => navigate(ScreenNames.LoginScreen)}>
-          {translate('landing_auth')}
-        </Button>
+        <ActivityIndicator size={'large'} />
       </View>
     </ScreenWrapper>
   );

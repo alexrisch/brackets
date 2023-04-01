@@ -18,6 +18,14 @@ export enum QueryKeys {
 }
 
 export enum MutationKeys {
+  // Auth
+  SubmitLogin = "SubmitLogin",
+  VerifyCodeSubmit = 'VerifyCodeSubmit',
+  VerifyCodeResend = 'VerifyCodeResend',
+  ForgotPasswordSubmit = 'ForgotPasswordSubmit',
+  ForgotPasswordCodeSend = 'ForgotPasswordCodeSend',
+  NewPasswordSubmit = 'NewPasswordSubmit',
+
   // Bracket
   BracketChatMessage = '',
   BracketTeamAdd = '',

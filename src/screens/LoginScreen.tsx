@@ -1,37 +1,55 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
+import { Auth } from 'aws-amplify';
 import { ScreenNames } from '../AppNavigator';
 import { ScreenWrapper } from '../components/ScreenWrapper';
 import { useAppNav } from '../navigation';
 import { translate } from '../translations';
+import { useMutation } from 'react-query';
+import { MutationKeys } from '../queries/QueryKeys';
 
 export const LoginScreen = () => {
-  const {navigate} = useAppNav();
+  const {navigate, reset} = useAppNav();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
-  const handleLogin = () => {
-    // TODO:
-    // your code to login
-    navigate(ScreenNames.HomeScreen);
+  const handleLogin = async () => {
+    return Auth.signIn(email, password);
   };
+
+  const {mutate: login, isLoading} = useMutation(MutationKeys.SubmitLogin, handleLogin, {
+    onSuccess: () => {
+      reset({
+        routes: [
+          {
+            name: ScreenNames.HomeScreen
+          }
+        ]
+      });
+    },
+    onError: () => {
+      // TODO: Errors
+      console.log('Failed to log in');
+    },
+  });
 
   return (
     <ScreenWrapper>
       <View style={styles.container}>
         <TextInput
           label={translate('login_email')}
-          // placeholder="Enter your email"
           autoCapitalize="none"
           keyboardType="email-address"
-          
+          onChangeText={setEmail}
         />
         <TextInput
           label={translate('login_password')}
-          // placeholder="Enter your password"
           secureTextEntry={!showPass}
+          onChangeText={setPassword}
           right={<TextInput.Icon icon="eye" onPress={() => setShowPass(prev => !prev)} />}
         />
-        <Button mode="contained" onPress={handleLogin}>
+        <Button mode="contained" onPress={() => login()} loading={isLoading}>
           {translate('login_button')}
         </Button>
         <Button mode='outlined' onPress={() => navigate(ScreenNames.RegisterScreen)}>

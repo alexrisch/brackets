@@ -14,10 +14,19 @@
   "register_button": "Register",
   "register_login": "Login",
 
+  "verify_sign_up_code": "Code",
+  "verify_sign_up_title": "Verify",
+  "verify_sign_up_code_message": "We have sent you a confirmation code, enter the code to continue",
+  "verify_sign_up_submit_button": "Submit",
+  "verify_sign_up_resend_button": "Resend Code",
+
   "forgot_password_code": "Code",
+  "forgot_password_title": "Forgot Password",
+  "forgot_password_enter_to_continue": "Enter your email and we will send you a code to reset your password",
   "forgot_password_code_message": "We have sent you a reset code, enter the code to continue",
   "forgot_password_submit_button": "Submit",
   "forgot_password_resend_button": "Resend Code",
+  "forgot_password_email": "Email",
 
   "reset_password_title": "Reset Password",
   "reset_password_new_password": "Enter your new password",

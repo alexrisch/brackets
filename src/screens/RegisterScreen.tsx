@@ -1,17 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
+import { Auth } from 'aws-amplify';
 import { useMutation } from 'react-query';
 import { ScreenNames } from '../AppNavigator';
 import { ScreenWrapper } from '../components/ScreenWrapper';
 import { useAppNav } from '../navigation';
 import { translate } from '../translations';
-
-const registerUser = async (userData: { email: string; displayName: string; password: string }) => {
-  // Placeholder function to simulate registering user
-  // await new Promise(resolve => setTimeout(resolve, 1000));
-  // console.log('User registered successfully with data: ', userData);
-};
 
 export const RegisterScreen = () => {
   const {navigate} = useAppNav();
@@ -19,6 +14,28 @@ export const RegisterScreen = () => {
   const [displayName, setDisplayName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
+
+  const registerUser = async ({
+    email,
+    password,
+    displayName
+  }: { email: string; displayName: string; password: string }) => {
+    return Auth.signUp({
+      username: email,
+      password: password,
+      attributes: {
+        preferred_username: displayName,
+        // TODO: Images
+        picture: 'https://thumbs.dreamstime.com/b/funny-face-baby-27701492.jpg'
+      },
+      autoSignIn: { // optional - enables auto sign in after user is confirmed
+        enabled: true,
+      },
+    }).then(() => {
+      navigate(ScreenNames.VerifySignUpSceeen, {username: email});
+    });
+  };
+  
 
   const registerMutation = useMutation(registerUser, {
     onSuccess: () => console.log('User registered successfully!'),

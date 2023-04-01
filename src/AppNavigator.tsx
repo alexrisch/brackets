@@ -17,6 +17,7 @@ import {
   ChatScreen,
   BracketViewScreen,
   LandingScreen,
+  VerifySignUpSceeen,
 } from './screens';
 
 export enum ScreenNames {
@@ -24,6 +25,7 @@ export enum ScreenNames {
   AuthLoadingScreen = "AuthLoading",
   LoginScreen = "Login",
   RegisterScreen = "Register",
+  VerifySignUpSceeen = "VerifySignUp",
   ForgotPasswordScreen = "ForgotPassword",
   ResetPasswordScreen = "ResetPassword",
   HomeScreen = "Home",
@@ -42,8 +44,9 @@ export type RootStackParamList = {
   [ScreenNames.LandingScreen]: undefined;
   [ScreenNames.LoginScreen]: undefined;
   [ScreenNames.RegisterScreen]: undefined;
+  [ScreenNames.VerifySignUpSceeen]: {username: string};
   [ScreenNames.ForgotPasswordScreen]: undefined;
-  [ScreenNames.ResetPasswordScreen]: undefined;
+  [ScreenNames.ResetPasswordScreen]: {username: string};
   [ScreenNames.HomeScreen]: undefined;
   [ScreenNames.ProfileScreen]: undefined;
   [ScreenNames.CreateBracketScreen]: {bracketId: string};
@@ -65,6 +68,7 @@ export const AppNavigator = () => {
         <Stack.Screen name={ScreenNames.LandingScreen} component={LandingScreen} />
         <Stack.Screen name={ScreenNames.LoginScreen} component={LoginScreen} />
         <Stack.Screen name={ScreenNames.RegisterScreen} component={RegisterScreen} />
+        <Stack.Screen name={ScreenNames.VerifySignUpSceeen} component={VerifySignUpSceeen} />
         <Stack.Screen name={ScreenNames.ForgotPasswordScreen} component={ForgotPasswordScreen} />
         <Stack.Screen name={ScreenNames.ResetPasswordScreen} component={ResetPasswordScreen} />
         <Stack.Screen name={ScreenNames.HomeScreen} component={HomeScreen} />

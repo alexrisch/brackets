@@ -15,4 +15,4 @@ export * from './BracketViewScreen';
 export * from './AddTeamScreen';
 export * from './AddTeamScreen';
 export * from './LandingScreen';
-
+export * from './VerifySignUpSceeen';

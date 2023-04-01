@@ -1,87 +1,36 @@
 {
   "auth": {
-    "bracketsc6a5b45c": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+    "Bracket": {
       "customAuth": false,
+      "dependsOn": [],
       "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "PREFERRED_USERNAME",
+          "PICTURE"
+        ],
         "socialProviders": [],
         "usernameAttributes": [
           "EMAIL"
         ],
-        "signupAttributes": [
-          "EMAIL",
-          "PREFERRED_USERNAME"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
-        },
-        "mfaConfiguration": "OPTIONAL",
-        "mfaTypes": [
-          "SMS"
-        ],
         "verificationMechanisms": [
           "EMAIL"
         ]
-      }
-    },
-    "userPoolGroups": {
-      "service": "Cognito-UserPool-Groups",
+      },
       "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "bracketsc6a5b45c",
-          "attributes": [
-            "UserPoolId",
-            "AppClientIDWeb",
-            "AppClientID",
-            "IdentityPoolId"
-          ]
-        }
-      ]
-    }
-  },
-  "function": {
-    "AdminQueriesc706d414": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
-      "build": true,
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "bracketsc6a5b45c",
-          "attributes": [
-            "UserPoolId"
-          ]
-        }
-      ]
-    }
-  },
-  "api": {
-    "AdminQueries": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "bracketsc6a5b45c",
-          "attributes": [
-            "UserPoolId"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "AdminQueriesc706d414",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
-        }
-      ]
+      "service": "Cognito"
     }
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, Linking, StyleSheet, View } from 'react-native';
 import { Text, TextInput, Button, Appbar, List, Switch } from 'react-native-paper';
 import { useMutation, useQuery } from 'react-query';
+import { Auth } from 'aws-amplify';
 import { ScreenNames } from '../AppNavigator';
 import { ScreenWrapper } from '../components/ScreenWrapper';
 import { NotificationPreferences, ProfileData } from '../models/Profile';
@@ -88,13 +89,20 @@ export const ProfileScreen = () => {
     }
   });
   const {displayName, notificationPreferences, links} = data ?? {};
-  const { goBack, navigate } = useAppNav();
+  const { goBack, reset } = useAppNav();
 
 
   const handleLogout = async () => {
-    // TODO:
-    // your code to fetch the user display name
-    navigate(ScreenNames.LoginScreen);
+    return Auth.signOut().then(() => {
+      console.log('Ali waaah')
+      reset({
+        routes: [
+          {
+            name: ScreenNames.LoginScreen
+          }
+        ]
+      })
+    });
   };
 
   return (
@@ -123,7 +131,7 @@ export const ProfileScreen = () => {
         />
         <View style={styles.footerContainer}>
           {links?.map(it => <Button key={it.link} style={styles.link} onPress={() => Linking.openURL(it.link)}>{it.display}</Button>)}
-          <Button mode='outlined' style={styles.logoutButton} onPress={handleLogout}>{translate('profile_logout')}</Button>
+          <Button mode='outlined' style={styles.logoutButton} onPress={() => handleLogout()}>{translate('profile_logout')}</Button>
         </View>
       </View>
     </ScreenWrapper>
